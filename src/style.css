@@ -1,0 +1,107 @@
+@import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
+@import "../node_modules/bootstrap/dist/css/bootstrap-reboot.css";
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+@import "https://use.fontawesome.com/releases/v5.6.3/css/all.css";
+@import "https://fonts.googleapis.com/css?family=Montserrat:100,400,700";
+
+
+/* 
+    This is the global css file
+*/
+
+:root {
+  --main-background-color: whitesmoke;
+      /*whitesmoke is for background and text inside special elements*/
+  --main-element-color: #36454f; /*"CHARCOAL*/
+      /*Charcoal is for text on main pages and navbar background*/
+  --special-element-color: #b08a43; /*"BRASS"*/
+      /*Brass is for special elements like buttons*/
+  --main-font-family: 'Montserrat', sans-serif;
+
+  /* 
+    Use global color-variables with:
+    EXAMPLE: "color: var(--main-element-color);"
+*/
+}
+* {
+  box-sizing: border-box;
+  font-family: var(--main-font-family);
+  color: var(--main-element-color);
+}
+
+button:focus {
+  outline: none;
+}
+
+body {
+  margin: 0;
+  background-color: var(--main-background-color);
+  font-family: var(--main-font-family);
+
+}
+
+.btn-movie {
+  background-color: var(--special-element-color);
+  color: var(--main-background-color);
+}
+
+#app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  padding: 0;
+  font-family: var(--main-font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: var(--main-background-color);
+  background-color: var(--main-background-color);
+
+  /* background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.329), rgba(0, 0, 0, 0.6)), url(./assets/start-bg.jpg); */
+  font-family: var(--main-font-family);
+  background-size: cover;
+  /* overflow-x: hidden; */
+}
+
+#app > div {
+  flex: 1;
+  padding: 2%;
+  color: var(--main-element-color);
+  animation-duration: 100ms;
+  background-color: var(--main-background-color);
+}
+
+/* USE THIS CLASS FOR ALL CONTENT */
+.content-bg {
+  min-height: 50vh;
+} 
+
+
+h1, h2 {
+  font-family: var(--main-font-family);
+  font-weight: 100;
+}
+
+h3 {
+  font-weight: 100;
+}
+
+strong {
+  font-weight: 700;
+}
+
+p {
+  font-family: var(--main-font-family);
+  font-weight: 400;
+}
+
+button {
+  background-color: var(--special-element-color);
+  color: var(--main-background-color);
+}
+
+nav {
+  background-color: var(--main-element-color);
+  color: var(--special-element-color);
+}
+

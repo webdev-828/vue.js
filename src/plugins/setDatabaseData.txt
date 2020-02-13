@@ -1,0 +1,136 @@
+let storaSal = {
+    name: "Stora Salongen",
+    maxSeats: 81,
+    seatsLeft: 81,
+    seats: [
+      [0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    ]
+  };
+  let lillaSal = {
+    name: "Lilla Salongen",
+    maxSeats: 56,
+    seatsLeft: 56,
+    seats: [
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    ]
+  };
+  let day = 1;
+  let month = 0;
+  
+  function rndMovie() {
+    let rndIndex = Math.floor(Math.random() * Vue.$store.movies.length);
+    return Vue.$store.movies[rndIndex].Title;
+  }
+  
+  db.ref("visningar").once("value", dbData, dbErr);
+      function dbErr(err) {}
+  
+  let keys = [];
+  function dbData(data) {
+    keys = Object.keys(data.val());
+    console.log(keys);
+  
+    for (let i = 0; i < 90; i++) {
+      let rndIndex1 = Math.floor(Math.random() * Vue.$store.movies.length);
+      let rndIndex2 = Math.floor(Math.random() * Vue.$store.movies.length);
+      let rndIndex3 = Math.floor(Math.random() * Vue.$store.movies.length);
+  
+  
+      let today = day < 10 ? "0" + day : day;
+      let dateJan = "2019" + "-" + "01" + "-" + today;
+      let dateFeb = "2019" + "-" + "02" + "-" + today;
+      let dateMar = "2019" + "-" + "03" + "-" + today;
+  
+      // dateShow = dateJan
+      let dateShow = [
+        {
+          auditorium: storaSal,
+          movie: "",
+          time: "17:00"
+        },
+        {
+          auditorium: lillaSal,
+          movie: "",
+          time: "17:00"
+        },
+        {
+          auditorium: storaSal,
+          movie: "",
+          time: "19:30"
+        }
+      ];
+  
+      // for (let j = 0; j < 3; j++) {
+      //   let rndIndex = Math.floor(Math.random() * Vue.$store.movies.length);
+  
+      //   dateShow[j].movie = Vue.$store.movies[rndIndex].Title;
+      // }
+  
+      let localMonth = dateJan;
+  
+      switch (month) {
+        case 0:
+          localMonth = dateJan;
+          break;
+        case 1:
+          localMonth = dateFeb;
+          break;
+        case 2:
+          localMonth = dateMar;
+          break;
+        default:
+      }
+  
+      // let key =  db.ref("visningar").push({
+      //   date: localMonth,
+      //   shows: dateShow
+      // });
+  
+      // db.child(key).remove();
+  
+      // db.ref("visningar").remove();
+  
+      db.ref("visningar/" + keys[i]).set({
+        date: localMonth,
+        shows: {
+          0: {
+            auditorium: storaSal,
+            time: "17:00",
+            movie: Vue.$store.movies[rndIndex1].Title
+            // Link: movielist[rndIndex1]
+          },
+          1: {
+            auditorium: lillaSal,
+            time: "17:00",
+            movie: Vue.$store.movies[rndIndex2].Title
+            // Link: movielist[rndIndex2]
+          },
+          2: {
+            auditorium: storaSal,
+            time: "19:30",
+            movie: Vue.$store.movies[rndIndex3].Title
+            // Link: movielist[rndIndex3]
+          }
+        }
+      });
+  
+      day++;
+  
+      if (day > 31) {
+        day = 1;
+        month++;
+      }
+    }
+  }
